@@ -18,23 +18,23 @@ public class SortableDataTables {
     WebDriver driver;
 
     @BeforeMethod
-    public void setup () {
-        System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\chromedriver.exe");
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(false);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @Test
-    public void inputTest () {
+    public void inputTest() {
         driver.get("http://the-internet.herokuapp.com/tables");
-        WebElement firstColumnFirstCell = driver.findElement (By.xpath("//table//tr[1]//td[1]"));
+        WebElement firstColumnFirstCell = driver.findElement(By.xpath("//table//tr[1]//td[1]"));
         assertEquals(firstColumnFirstCell.getText(), "Smith");
-        WebElement firstColumnSecondCell = driver.findElement (By.xpath("//table//tr[1]//td[2]"));
+        WebElement firstColumnSecondCell = driver.findElement(By.xpath("//table//tr[1]//td[2]"));
         assertEquals(firstColumnSecondCell.getText(), "John");
-        WebElement ForthColumnThirdCell = driver.findElement (By.xpath("//table//tr[4]//td[3]"));
+        WebElement ForthColumnThirdCell = driver.findElement(By.xpath("//table//tr[4]//td[3]"));
         assertEquals(ForthColumnThirdCell.getText(), "tconway@earthlink.net");
 
     }

@@ -16,17 +16,17 @@ public class AddRemoveElements {
     WebDriver driver;
 
     @BeforeMethod
-    public void setup () {
-        System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\chromedriver.exe");
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(false);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @Test
-    public void addRemoveElements () {
+    public void addRemoveElements() {
         driver.get("http://the-internet.herokuapp.com/add_remove_elements/");
         List<WebElement> addButton = driver.findElements(By.tagName("button"));
         addButton.get(0).click();
@@ -34,11 +34,11 @@ public class AddRemoveElements {
         List<WebElement> removeButton = driver.findElements(By.className("added-manually"));
         removeButton.get(1).click();
         removeButton = driver.findElements(By.className("added-manually"));
-        assertEquals(removeButton.size(), 1);
+        assertEquals(removeButton.size(), 1, "Кол-во искомых элементов должно быть равно 1");
 
     }
 
-   @AfterMethod
+    @AfterMethod
     public void tearDown() {
         driver.quit();
     }

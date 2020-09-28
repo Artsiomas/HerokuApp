@@ -17,19 +17,19 @@ public class NotificationMessages {
     WebDriver driver;
 
     @BeforeMethod
-    public void setup () {
-        System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\chromedriver.exe");
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(false);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @Test
-    public void notificationMessage () {
+    public void notificationMessage() {
         driver.get("http://the-internet.herokuapp.com/notification_message_rendered");
-        WebElement notificationMessage = driver.findElement (By.xpath(".//*[text()='Click here']"));
+        WebElement notificationMessage = driver.findElement(By.xpath(".//*[text()='Click here']"));
         notificationMessage.click();
         WebElement searchAndCompareNotification = driver.findElement(By.xpath("//div[@id='flash']/.."));
         assertEquals(searchAndCompareNotification.getText(), "Action successful\n×");

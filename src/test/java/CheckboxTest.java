@@ -18,25 +18,25 @@ public class CheckboxTest {
     WebDriver driver;
 
     @BeforeMethod
-    public void setup () {
-        System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\chromedriver.exe");
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(false);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @Test
-    public void checkboxTest () {
+    public void checkboxTest() {
         driver.get("http://the-internet.herokuapp.com/checkboxes");
         List<WebElement> checkboxes = driver.findElements(By.tagName("input"));
         assertFalse(checkboxes.get(0).isSelected());
         checkboxes.get(0).click();
-        assertTrue(checkboxes.get(0).isSelected());
-        assertTrue(checkboxes.get(1).isSelected());
+        assertTrue(checkboxes.get(0).isSelected(), "Проверяем отображается ли 1-ый чекбокс на странице");
+        assertTrue(checkboxes.get(1).isSelected(), "Проверяем отображается ли 2-jq чекбокс на странице");
         checkboxes.get(1).click();
-        assertFalse(checkboxes.get(1).isSelected());
+        assertFalse(checkboxes.get(1).isSelected(), "Выбранный чекбокс НЕ должен отображаться на странице");
     }
 
     @AfterMethod
