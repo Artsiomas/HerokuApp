@@ -2,14 +2,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+import static org.testng.Assert.assertEquals;
 
-import static org.testng.AssertJUnit.assertEquals;
-
-public class Frames extends BasePageTest {
+public class Frames extends BaseTest {
     public static final String URL_FRAMES = "http://the-internet.herokuapp.com/frames";
 
     @Test
-    public void checkTextInFrame () {
+    public void checkTextInFrame() {
         driver.get(URL_FRAMES);
         driver.findElement(By.linkText("iFrame")).click();
         WebDriverWait wait = new WebDriverWait(driver, 20);
@@ -18,5 +17,4 @@ public class Frames extends BasePageTest {
         String foundtext = driver.findElement(By.id("tinymce")).getText();
         assertEquals(foundtext, "Your content goes here.");
     }
-
 }
